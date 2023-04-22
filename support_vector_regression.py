@@ -35,3 +35,14 @@ plt.title("Support Vector Regression Model")
 plt.xlabel("Position Level")
 plt.ylabel("Salary")
 plt.show()
+
+# Visualizing the SVR results with a higher resolution and smoother curve
+x_grid = np.arange(min(sc_x.inverse_transform(x)), max(sc_x.inverse_transform(x)), 0.1)
+x_grid = x_grid.reshape((len(x_grid), 1))
+plt.scatter(sc_x.inverse_transform(x), sc_y.inverse_transform(y), color="red")
+plt.plot(x_grid, sc_y.inverse_transform(regressor.predict(sc_x.transform(x_grid)).reshape(-1, 1)),
+         color="blue")
+plt.title("Support Vector Regression Model (Smoother Curve)")
+plt.xlabel("Position Level")
+plt.ylabel("Salary")
+plt.show()
