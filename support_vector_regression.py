@@ -21,3 +21,17 @@ x = sc_x.fit_transform(x)
 y = sc_y.fit_transform(y)
 
 # Training a model with SVR
+regressor = SVR(kernel="rbf")
+regressor.fit(x, y)
+
+# Predicting a new result
+prediction = sc_y.inverse_transform(regressor.predict(sc_x.transform([[6.5]])).reshape(-1, 1))
+
+# Visualizing the SVR results
+plt.scatter(sc_x.inverse_transform(x), sc_y.inverse_transform(y), color="red")
+plt.plot(sc_x.inverse_transform(x), sc_y.inverse_transform(regressor.predict(x).reshape(-1, 1)),
+         color="blue")
+plt.title("Support Vector Regression Model")
+plt.xlabel("Position Level")
+plt.ylabel("Salary")
+plt.show()
